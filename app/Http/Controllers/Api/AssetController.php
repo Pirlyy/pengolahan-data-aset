@@ -1,8 +1,11 @@
 <?php
 
+namespace App\Http\Controllers\Api;
+
 use App\Models\Asset;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
 class AssetController extends Controller
 {
     // Pengadaan (Create Asset)
