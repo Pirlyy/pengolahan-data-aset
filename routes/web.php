@@ -15,3 +15,4 @@ Route::get('/test-mongo', function () {
 
     return "Data berhasil masuk MongoDB!";
 });
+
