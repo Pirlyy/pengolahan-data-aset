@@ -2,56 +2,22 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\DashboardController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-*/
-
-// ======================
-// HALAMAN AWAL
-// ======================
-Route::get('/', function () {
-    return redirect('/login');
-});
-
-
-
-    return "Data berhasil masuk MongoDB!";
-
-
-// ======================
-// AUTH (GUEST ONLY)
-// ======================
+// Route untuk guest (belum login)
 Route::middleware('guest')->group(function () {
-
-    // Tampilkan Form Login
-    Route::get('/login', [AuthController::class, 'showLogin'])
-        ->name('login');
-
-    // Proses Login
-    Route::post('/login', [AuthController::class, 'login']);
-
-    // Tampilkan Form Register
-    Route::get('/register', [AuthController::class, 'showRegister'])
-        ->name('register');
-
-    // Proses Register
-    Route::post('/register', [AuthController::class, 'register']);
+    Route::view('/login', 'auth.login')->name('login');
+    Route::view('/register', 'auth.register')->name('register');
 });
 
-
-// ======================
-// DASHBOARD (HARUS LOGIN)
-// ======================
+// Route yang membutuhkan login
 Route::middleware('auth')->group(function () {
-
-    Route::get('/dashboard', [DashboardController::class, 'index'])
-        ->name('dashboard');
-
-    Route::post('/logout', [AuthController::class, 'logout'])
-        ->name('logout');
+    Route::get('/', function () {
+        return redirect()->route('dashboard');
+    });
+    
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+    
+    // Tambahkan route lainnya di sini
 });
-
