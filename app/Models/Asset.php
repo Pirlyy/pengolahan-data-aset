@@ -7,13 +7,19 @@ use MongoDB\Laravel\Eloquent\Model;
 class Asset extends Model
 {
     protected $connection = 'mongodb';
-    protected $collection = 'assets';
+    protected $collection = 'assets'; // ← nama collection di MongoDB
 
     protected $fillable = [
+        'kode',
         'nama',
         'kategori',
         'lokasi',
+        'nilai',
         'status',
-        'tanggal_pengadaan'
+        'deskripsi',
+    ];
+
+    protected $casts = [
+        'nilai' => 'integer',
     ];
 }
