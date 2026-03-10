@@ -2,16 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
- use Illuminate\Support\Facades\DB;
+// ✅ Login & Register — tanpa middleware apapun
+Route::view('/login', 'auth.login')->name('login');
+Route::view('/register', 'auth.register')->name('register');
 
-Route::get('/test-mongo', function () {
-    DB::connection('mongodb')->table('test')->insert([
-        'nama' => 'Firly',
-        'created_at' => now()
-    ]);
-
-    return "Data berhasil masuk MongoDB!";
-});
+// ✅ Dashboard — tanpa middleware auth session
+// Proteksi dilakukan di sisi JavaScript (cek token di localStorage)
+Route::view('/dashboard', 'dashboard')->name('dashboard');
