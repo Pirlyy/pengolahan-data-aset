@@ -4,6 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\AssetController;
 use App\Http\Controllers\Api\KategoriController;
+use App\Http\Controllers\Api\LokasiController;
+use App\Http\Controllers\Api\VendorController;
+
+Route::apiResource('lokasi', LokasiController::class);
+Route::apiResource('vendor', VendorController::class);
 
 // ── Route Publik (tanpa token) ─────────────────────────────
 Route::prefix('auth')->group(function () {
