@@ -1,52 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\DashboardController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-*/
+// ✅ Login & Register — tanpa middleware apapun
+Route::view('/login', 'auth.login')->name('login');
+Route::view('/register', 'auth.register')->name('register');
 
-// ======================
-// HALAMAN AWAL
-// ======================
-Route::get('/', function () {
-    return redirect('/login');
-});
-
-
-// ======================
-// AUTH (GUEST ONLY)
-// ======================
-Route::middleware('guest')->group(function () {
-
-    // Tampilkan Form Login
-    Route::get('/login', [AuthController::class, 'showLogin'])
-        ->name('login');
-
-    // Proses Login
-    Route::post('/login', [AuthController::class, 'login']);
-
-    // Tampilkan Form Register
-    Route::get('/register', [AuthController::class, 'showRegister'])
-        ->name('register');
-
-    // Proses Register
-    Route::post('/register', [AuthController::class, 'register']);
-});
-
-
-// ======================
-// DASHBOARD (HARUS LOGIN)
-// ======================
-Route::middleware('auth')->group(function () {
-
-    Route::get('/dashboard', [DashboardController::class, 'index'])
-        ->name('dashboard');
-
-    Route::post('/logout', [AuthController::class, 'logout'])
-        ->name('logout');
-});
+// ✅ Dashboard — tanpa middleware auth session
+// Proteksi dilakukan di sisi JavaScript (cek token di localStorage)
+Route::view('/dashboard', 'dashboard')->name('dashboard');
