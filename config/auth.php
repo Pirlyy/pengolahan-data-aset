@@ -42,7 +42,7 @@ return [
         ],
 
         'api' => [
-            'driver' => env('AUTH_API_GUARD_DRIVER', 'jwt'),
+            'driver' => 'jwt',
             'provider' => 'users',
             'hash' => false,
         ],

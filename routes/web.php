@@ -1,18 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\AuthController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
- use Illuminate\Support\Facades\DB;
-
-Route::get('/test-mongo', function () {
-    DB::connection('mongodb')->table('test')->insert([
-        'nama' => 'Firly',
-        'created_at' => now()
-    ]);
-
-    return "Data berhasil masuk MongoDB!";
-});
-
+Route::view('/login','auth.login')->name('login');
+Route::view('/register','auth.register')->name('register');
