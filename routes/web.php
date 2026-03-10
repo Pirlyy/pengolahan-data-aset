@@ -18,11 +18,10 @@ Route::get('/', function () {
 });
 
 
-<<<<<<< HEAD
-    return "Data berhasil masuk MongoDB!";
-});
 
-=======
+    return "Data berhasil masuk MongoDB!";
+
+
 // ======================
 // AUTH (GUEST ONLY)
 // ======================
@@ -55,4 +54,4 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])
         ->name('logout');
 });
->>>>>>> 634474f5929f870be46bd431b41851f13ee79a64
+
